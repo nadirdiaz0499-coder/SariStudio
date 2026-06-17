@@ -23,8 +23,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .text-center { text-align: center; }
-/* --- TÍTULOS DE SECCIÓN --- */
 
+/* --- TÍTULOS DE SECCIÓN --- */
 .titulo-seccion {
     text-align: center;
     font-size: 42px;
@@ -366,7 +366,11 @@ nav a:hover { color: #b1c57c; }
 .tab-content { display: none; }
 .tab-content.active-content { display: block; animation: fadeIn 0.5s ease-out; }
 
-/* --- 🔥 CATÁLOGO EDITORIAL CORREGIDO: BLINDAJE CONTRA DISTORSIONES --- */
+/* --- CATÁLOGO EDITORIAL: BLINDAJE DESKTOP --- */
+.servicios-section {
+    padding: 80px 8%;
+}
+
 .servicio-card { 
     background-color: #ffffff; 
     padding: 24px; 
@@ -374,24 +378,22 @@ nav a:hover { color: #b1c57c; }
     margin-bottom: 25px; 
     box-shadow: 0 4px 20px rgba(0,0,0,0.01); 
     border: 1px solid rgba(0,0,0,0.02); 
-    display: flex; /* 🔥 DISEÑO 2 COLUMNAS: Foto izquierda, textos derecha */
+    display: flex; 
     align-items: center;
     gap: 30px;
     overflow: hidden;
 }
 
-/* LA SOLUCIÓN TÉCNICA: Obliga a la foto a quedarse cuadrada sin achatarse */
 .servicio-img {
-    width: 150px;    /* Ancho fijo exacto en PC */
-    height: 150px;   /* Altura fija idéntica */
-    flex-shrink: 0;  /* Bloquea que flexbox comprima la imagen */
+    width: 150px;    
+    height: 150px;   
+    flex-shrink: 0;  
     border-radius: 14px;
     border: 1px solid rgba(0, 0, 0, 0.04);
-    object-fit: cover; /* Centra y recorta lo sobrante de Canva si el lienzo no fuera perfecto */
+    object-fit: cover; 
     display: block;
 }
 
-/* Contenedor del contenido textual derecho */
 .servicio-info-block {
     flex: 1;
     display: flex;
@@ -442,7 +444,7 @@ nav a:hover { color: #b1c57c; }
 
 /* --- PROMO GLASSMORPHISM --- */
 .promo-section { display: flex; justify-content: center; padding: 50px 4%; }
-.glass-mirror-container { background: linear-gradient(135deg, rgba(251, 202, 215, 0.15), rgba(177, 197, 124, 0.1)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200') center/cover; padding: 50px 30px; border-radius: 28px; width: 100%; max-width: 750px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); border: 1px solid rgba(255, 255, 255, 0.3); }
+.glass-mirror-container { background: linear-gradient(135deg, rgba(251, 202, 215, 0.15), rgba(177, 197, 124, 0.1)), url('studio_interior.png') center/cover; padding: 50px 30px; border-radius: 28px; width: 100%; max-width: 750px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); border: 1px solid rgba(255, 255, 255, 0.3); }
 .glass-card-inner { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 35px 40px; border-radius: 20px; max-width: 580px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 8px 32px rgba(96, 114, 97, 0.08); position: relative; z-index: 2; }
 .badge-promo { background-color: #222a23; color: #ffffff; font-size: 10px; font-weight: 600; padding: 5px 14px; border-radius: 25px; text-transform: uppercase; display: inline-block; letter-spacing: 0.5px; }
 .glass-card-inner h3 { font-size: 28px; margin: 15px 0 10px; font-weight: 700; color: #222a23; }
@@ -450,9 +452,9 @@ nav a:hover { color: #b1c57c; }
 .glass-shimmer-line { position: absolute; top: 0; left: -150%; width: 40%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-25deg); animation: elegantShimmer 6s infinite ease-in-out; z-index: 1; }
 
 /* --- PREGUNTAS FRECUENTES --- */
-.faq-section { padding: 60px 8%; }
+.faq-section { padding: 60px 8%; background: #ffffff; }
 .faq-container { max-width: 750px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-.faq-item { background: #ffffff; border-radius: 14px; overflow: hidden; border: 1px solid rgba(0,0,0,0.01); box-shadow: 0 4px 15px rgba(0,0,0,0.005); }
+.faq-item { background: #ffffff; border-radius: 14px; overflow: hidden; border: 1px solid rgba(177, 197, 124, 0.25); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
 .faq-question { width: 100%; padding: 20px 24px; background: #ffffff; border: none; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #222a23; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; outline: none; transition: background 0.3s; gap: 15px; }
 .faq-question:hover { background: #faf6f5; }
 .faq-question::after { content: '+'; font-size: 18px; color: #b1c57c; font-weight: bold; transition: transform 0.3s; flex-shrink: 0; }
@@ -481,13 +483,26 @@ nav a:hover { color: #b1c57c; }
 .btn-enviar:hover { background-color: #9cb16b; }
 .info-footer-studio { margin-top: 30px; font-size: 13px; color: #607261; line-height: 1.6; }
 
-/* --- MEDIA QUERIES --- */
+/* --- KEYFRAMES COMPLEMENTARIOS --- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes elegantShimmer { 0% { left: -150%; } 30% { left: 150%; } 100% { left: 150%; } }
+@keyframes flashGlint { 0% { left: -150%; } 100% { left: 150%; } }
+
+.reveal { opacity: 0; transform: translateY(35px); transition: opacity 1.2s cubic-bezier(0.215, 0.610, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.610, 0.355, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+footer { padding: 40px; text-align: center; background-color: #faf6f5; font-size: 12px; color: #8fa091; }
+
+/* ================================================================= */
+/* 📱 --- SECCIÓN DE OPTIMIZACIÓN RESPONSIVA MÓVIL TOTAL (CORREGIDA) --- */
+/* ================================================================= */
 @media (max-width: 768px) {
     section { padding: 50px 20px; }
     header { padding: 10px 20px; }
     .logo-img { height: 60px; }
     nav a:not(.btn-nav) { display: none; } 
 
+    /* Hero en móvil */
     .hero { height: 85vh; padding: 0 16px; }
     .hero-bg-unified { background-position: center 25%; }
     .hero-content h1 { font-size: 42px; margin-bottom: 12px; }
@@ -495,19 +510,18 @@ nav a:hover { color: #b1c57c; }
     .subtitulo { font-size: 14.5px; margin-bottom: 25px; }
     .btn-principal { padding: 14px 35px; font-size: 13px; }
 
+    /* Mosaico Quiénes Somos en móvil — solo foto principal */
     .artist-section { padding: 60px 20px 30px; }
     .artist-container { flex-direction: column; gap: 30px; text-align: center; }
-    .studio-mosaic { width: 100%; height: auto; flex-direction: column; gap: 10px; max-width: 100%; }
-    .mosaic-main { height: 280px; }
-    .mosaic-side { flex-direction: row; gap: 10px; height: 160px; width: 100%; }
-    .mosaic-side img:nth-child(1) { width: 50%; height: 100%; }
-    .mosaic-side img:nth-child(2) { width: 50%; height: 100%; }
+    
     .artist-text h2 { font-size: 28px; }
     
+    /* Slider interactivo en móvil */
     .split-slider-container { height: 320px; max-width: 320px; margin-top: 20px; border-radius: 16px; }
     .slider-handle { width: 4px; }
     .handle-button { width: 46px; height: 46px; font-size: 16px; } 
 
+    /* Quiz en móvil */
     .quiz-container-web { padding: 30px 15px 10px; }
     .quiz-box { padding: 24px 16px; border-radius: 18px; }
     .quiz-box h2 { font-size: 22px; }
@@ -516,21 +530,11 @@ nav a:hover { color: #b1c57c; }
     .btn-quiz-opt { padding: 14px 16px; font-size: 13px; border-radius: 10px; line-height: 1.4; }
     .resultado-highlight { font-size: 20px; }
 
-/* --- FONDO BLANCO SERVICIOS --- */
+    /* Forzar fondo blanco nativo a las secciones requeridas en móvil */
+    .servicios-section { background-color: #ffffff !important; padding: 60px 20px; }
+    .faq-section { background-color: #ffffff !important; padding: 60px 20px; }
 
-.servicios-section {
-    background: #ffffff;
-    padding: 80px 8%;
-    margin-top: 40px;
-}
-
-/* --- FAQ MEJORADO --- */
-
-.faq-section {
-    background: #ffffff;
-    padding: 80px 8%;
-}    
-    
+    /* Barra selectora de categorías con deslizamiento táctil horizontal */
     .tabs-nav-container { 
         display: flex !important;
         justify-content: flex-start !important; 
@@ -545,11 +549,9 @@ nav a:hover { color: #b1c57c; }
         background: rgba(96, 114, 97, 0.05) !important;
         -webkit-overflow-scrolling: touch !important; 
         scroll-snap-type: x mandatory;
-        -ms-overflow-style: none !important; 
-        scrollbar-width: none !important;
         margin: 0 auto 30px !important;
     }
-    .tabs-nav-container::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+    .tabs-nav-container::-webkit-scrollbar { display: none !important; }
 
     .tab-link { 
         flex: 0 0 auto !important; 
@@ -559,7 +561,6 @@ nav a:hover { color: #b1c57c; }
         font-weight: 500 !important;
         border-radius: 20px !important;
         scroll-snap-align: start;
-        white-space: nowrap !important; 
     }
 
     .tab-link.active {
@@ -568,28 +569,31 @@ nav a:hover { color: #b1c57c; }
         box-shadow: 0 4px 10px rgba(251, 202, 215, 0.35) !important;
     }
 
-    .titulo-seccion { font-size: 26px; margin-bottom: 30px; }
+    /* Títulos de sección alineados correctamente en móvil */
+    .titulo-seccion { font-size: 28px !important; text-align: center !important; margin-bottom: 25px !important; }
     
-    /* MÓVIL: Las tarjetas se adaptan a bloque vertical centrando la mirada Canva al 100% */
-    .servicio-card { flex-direction: column; align-items: center; gap: 20px; padding: 20px 16px; border-radius: 16px; }
-    .servicio-img { width: 100%; height: 260px; border-radius: 12px; } 
-    .servicio-info-block { width: 100%; }
-    .servicio-cabecera h4 { font-size: 16px; }
-    .precio { font-size: 16px; }
-    .servicio-desc { font-size: 13px; }
-    .servicio-detalles { gap: 12px; font-size: 11px; }
+    /* El catálogo de servicios: layout horizontal compacto en móvil */
+    .servicio-card { flex-direction: row !important; align-items: flex-start !important; gap: 14px !important; padding: 16px !important; border-radius: 16px !important; }
+    .servicio-img { width: 100px !important; height: 100px !important; flex-shrink: 0 !important; border-radius: 10px !important; } 
+    .servicio-info-block { width: auto !important; flex: 1 !important; }
+    .servicio-cabecera { flex-direction: column !important; align-items: flex-start !important; gap: 2px !important; margin-bottom: 6px !important; }
+    .servicio-cabecera h4 { font-size: 15px; }
+    .precio { font-size: 14px; }
+    .servicio-desc { font-size: 12.5px; }
+    .servicio-detalles { gap: 10px; font-size: 10.5px; }
 
-    .politicas-section { margin: 0 10px; }
-    .politicas-grid { grid-template-columns: 1fr; gap: 15px; }
-    .politica-item { padding: 18px; border-radius: 12px; }
+    /* Políticas e ítems rectangulares restaurados a su fondo beige premium */
+    .politicas-section { margin: 0 10px; padding: 40px 15px !important; }
+    .politicas-grid { grid-template-columns: 1fr !important; gap: 15px !important; }
+    .politica-item { padding: 18px !important; border-radius: 12px !important; background-color: #faf6f5 !important; border: 1px solid rgba(177, 197, 124, 0.05) !important; }
 
+    /* Promos, FAQ y Agenda */
     .promo-section { padding: 30px 15px; }
     .glass-mirror-container { padding: 30px 15px; border-radius: 20px; }
     .glass-card-inner { padding: 25px 20px; border-radius: 16px; }
     .glass-card-inner h3 { font-size: 22px; }
     .glass-card-inner p { font-size: 13px; }
 
-    .faq-section { padding: 45px 15px; }
     .faq-question { padding: 16px; font-size: 13.5px; }
     .faq-answer p { padding: 0 16px 16px; font-size: 13px; }
 
