@@ -143,7 +143,6 @@ nav a:hover { color: #b1c57c; }
     text-shadow: 0px 2px 10px rgba(255, 255, 255, 0.95);
 }
 
-/* 🔥 FIX GANADOR: Restaura el diseño de alta gama para el botón del Hero */
 .btn-principal {
     display: inline-block;
     padding: 16px 45px;
@@ -159,14 +158,8 @@ nav a:hover { color: #b1c57c; }
     box-shadow: 0 4px 15px rgba(251, 202, 215, 0.3);
 }
 
-.btn-principal:hover { 
-    background-color: #f7b3c4; 
-    transform: translateY(-1px); 
-}
-
-.btn-principal:active, .btn-enviar:active { 
-    transform: scale(0.97); 
-}
+.btn-principal:hover { background-color: #f7b3c4; transform: translateY(-1px); }
+.btn-principal:active, .btn-enviar:active { transform: scale(0.97); }
 
 .magic-badge {
     background-color: rgba(177, 197, 124, 0.12);
@@ -356,7 +349,7 @@ nav a:hover { color: #b1c57c; }
 .tab-content { display: none; }
 .tab-content.active-content { display: block; animation: fadeIn 0.5s ease-out; }
 
-/* --- CATÁLOGO EDITORIAL CON BLINDAJE PARA FOTOS 1080x1080 DE CANVA --- */
+/* --- 🔥 CATÁLOGO EDITORIAL CORREGIDO: BLINDAJE CONTRA DISTORSIONES --- */
 .servicio-card { 
     background-color: #ffffff; 
     padding: 24px; 
@@ -364,22 +357,24 @@ nav a:hover { color: #b1c57c; }
     margin-bottom: 25px; 
     box-shadow: 0 4px 20px rgba(0,0,0,0.01); 
     border: 1px solid rgba(0,0,0,0.02); 
-    display: flex; 
+    display: flex; /* 🔥 DISEÑO 2 COLUMNAS: Foto izquierda, textos derecha */
     align-items: center;
     gap: 30px;
     overflow: hidden;
 }
 
+/* LA SOLUCIÓN TÉCNICA: Obliga a la foto a quedarse cuadrada sin achatarse */
 .servicio-img {
-    width: 150px;    
-    height: 150px;   
-    flex-shrink: 0;  
+    width: 150px;    /* Ancho fijo exacto en PC */
+    height: 150px;   /* Altura fija idéntica */
+    flex-shrink: 0;  /* Bloquea que flexbox comprima la imagen */
     border-radius: 14px;
     border: 1px solid rgba(0, 0, 0, 0.04);
-    object-fit: cover; 
+    object-fit: cover; /* Centra y recorta lo sobrante de Canva si el lienzo no fuera perfecto */
     display: block;
 }
 
+/* Contenedor del contenido textual derecho */
 .servicio-info-block {
     flex: 1;
     display: flex;
@@ -442,16 +437,6 @@ nav a:hover { color: #b1c57c; }
 .btn-enviar { width: 100%; padding: 16px; background-color: #b1c57c; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
 .btn-enviar:hover { background-color: #9cb16b; }
 .info-footer-studio { margin-top: 30px; font-size: 13px; color: #607261; line-height: 1.6; }
-
-/* --- KEYFRAMES COMPLEMENTARIOS --- */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes elegantShimmer { 0% { left: -150%; } 30% { left: 150%; } 100% { left: 150%; } }
-@keyframes flashGlint { 0% { left: -150%; } 100% { left: 150%; } }
-
-.reveal { opacity: 0; transform: translateY(35px); transition: opacity 1.2s cubic-bezier(0.215, 0.610, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.610, 0.355, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
-footer { padding: 40px; text-align: center; background-color: #faf6f5; font-size: 12px; color: #8fa091; }
 
 /* --- MEDIA QUERIES --- */
 @media (max-width: 768px) {
@@ -527,6 +512,7 @@ footer { padding: 40px; text-align: center; background-color: #faf6f5; font-size
 
     .titulo-seccion { font-size: 26px; margin-bottom: 30px; }
     
+    /* MÓVIL: Las tarjetas se adaptan a bloque vertical centrando la mirada Canva al 100% */
     .servicio-card { flex-direction: column; align-items: center; gap: 20px; padding: 20px 16px; border-radius: 16px; }
     .servicio-img { width: 100%; height: 260px; border-radius: 12px; } 
     .servicio-info-block { width: 100%; }
