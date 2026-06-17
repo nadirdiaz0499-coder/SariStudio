@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sari Studio | Lashes, Brows & Lips</title>
+    
+    <!-- FAVICON: Logo en la pestaña del navegador -->
+    <link rel="icon" type="image/png" href="logo_ss.png">
+
+    <!-- Fuentes tipográficas profesionales y limpias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header>
+        <div class="logo">
+            <img src="logo_ss.png" alt="Sari Studio Logo" class="logo-img">
+        </div>
+        <nav>
+            <a href="#quienes-somos">Quiénes Somos</a>
+            <a href="#transformacion">Transformación</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#politicas">Políticas</a>
+            <a href="#faq">Preguntas</a>
+            <a href="#agendar" class="btn-nav">Agendar Cita</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN HERO (FOTO ESTÁTICA + TIPOGRAFÍA INTERACTIVA STAGGER) -->
+    <section class="hero">
+        <div class="hero-bg-unified"></div>
+        <div class="hero-content">
+            <h1 id="animar-titulo">Miradas Mágicas</h1>
+            <p class="subtitulo">Diseños personalizados de pestañas y cejas que realzan tus facciones, cuidando siempre la salud de tus pestañas y cejas naturales.</p>
+            <a href="#agendar" class="btn-principal">¡Aparta tu cita!</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: QUIÉNES SOMOS (MOSAICO PREMIUM ACTUALIZADO) -->
+    <section id="quienes-somos" class="artist-section reveal">
+        <div class="artist-container">
+            <!-- Mosaico Asimétrico con tus imágenes reales de Canva -->
+            <div class="studio-mosaic">
+                <div class="mosaic-main">
+                    <img src="camilla.png" alt="Sari Studio Camilla">
+                </div>
+                <div class="mosaic-side">
+                    <img src="sillon.jpg" alt="Sari Studio Recepción">
+                    <img src="almohada.png" alt="Sari Studio Detalles">
+                </div>
+            </div>
+            
+            <div class="artist-text">
+                <span class="magic-badge">Nuestra Esencia ✨</span>
+                <h2>Quiénes Somos</h2>
+                <p>En Sari Studio creemos que la belleza no se crea, se libera. Somos un studio boutique especializado en el diseño y cuidado de pestañas, cejas y labios, donde la precisión técnica se encuentra con un enfoque personalizado y meticuloso.</p>
+                <p>Nuestra filosofía se centra en resaltar la expresión de tu mirada de forma elegante y sutil, utilizando técnicas de alta gama que respetan y protegen siempre la salud de tu rostro, transformando tu rutina diaria en una experiencia de total bienestar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDER INTERACTIVO ANTES/DESPUÉS CUADRADO PERFECTO -->
+    <section id="transformacion" class="transformacion-section">
+        <div class="contenedor-chico text-center">
+            <span class="magic-badge">Resultados Reales ✨</span>
+            <h2 class="titulo-seccion reveal">El Arte del Detalle</h2>
+            <p class="sub-galeria reveal">Desliza la barra central para descubrir la magia inmediata en Sari Studio.</p>
+            
+            <div class="split-slider-container reveal" id="parallax-slider">
+                <div class="slider-img img-after"></div>
+                <div class="slider-img img-before" id="before-layer"></div>
+                <div class="slider-handle" id="slider-handle">
+                    <div class="handle-button">↔</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN QUIZ INTERACTIVO -->
+    <section id="quiz-section" class="quiz-container-web reveal">
+        <div class="quiz-box">
+            <span class="quiz-badge">Diagnóstico de Belleza ✨</span>
+            <h2>Encuentra tu Look Ideal</h2>
+            <p class="quiz-intro">Responde estas 3 preguntas rápidas para sugerirte el tratamiento que potenciará tu belleza natural de forma única.</p>
+            
+            <div id="quiz-flow">
+                <div class="quiz-step active" data-step="1">
+                    <h3>1. ¿Qué efecto buscas lograr en tu mirada?</h3>
+                    <div class="quiz-opciones">
+                        <button class="btn-quiz-opt" data-value="natural">Algo ultra natural, destacar mis propias pestañas</button>
+                        <button class="btn-quiz-opt" data-value="rimel">Efecto de rímel negro y definido todo el día</button>
+                        <button class="btn-quiz-opt" data-value="volumen">Efecto de volumen, cejas tupidas o labios jugosos</button>
+                    </div>
+                </div>
+                <div class="quiz-step" data-step="2">
+                    <h3>2. Al maquillarte por las mañanas, ¿a qué le dedicas más tiempo?</h3>
+                    <div class="quiz-opciones">
+                        <button class="btn-quiz-opt" data-value="pestanas">Rizar y maquillar mis pestañas</button>
+                        <button class="btn-quiz-opt" data-value="cejas">Peinar, rellenar y diseñar mis cejas</button>
+                        <button class="btn-quiz-opt" data-value="todo">Me gusta arreglar cejas, pestañas o labios por igual</button>
+                    </div>
+                </div>
+                <div class="quiz-step" data-step="3">
+                    <h3>3. ¿Cuál es tu prioridad principal actualmente?</h3>
+                    <div class="quiz-opciones">
+                        <button class="btn-quiz-opt" data-value="tiempo">Ahorrar tiempo y practicidad por las mañanas</button>
+                        <button class="btn-quiz-opt" data-value="hidratacion">Hidratar a fondo o dar un estilo sofisticado y elegante</button>
+                        <button class="btn-quiz-opt" data-value="garantia">Tener un look perfecto con garantía y cuidado profesional</button>
+                    </div>
+                </div>
+                <div class="quiz-step" id="quiz-resultado">
+                    <h3>✨ Tu Servicio Sugerido es:</h3>
+                    <div class="resultado-highlight" id="resultado-texto">Cargando tu diseño personalizado...</div>
+                    <p class="resultado-sub">¿Te gusta este estilo? Al dar clic abajo se seleccionará automáticamente en tu formulario de agenda.</p>
+                    <button class="btn-principal" id="btn-aplicar-quiz">Agendar con este servicio</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN SERVICIOS EDITORIAL CON IMÁGENES NATIVAS -->
+    <section id="servicios" class="servicios-section">
+        <div class="contenedor-chico">
+            <h2 class="titulo-seccion reveal">Menú de Servicios</h2>
+            <p class="text-center sub-galeria reveal" style="margin-top: -30px; margin-bottom: 40px;">Selecciona una categoría para explorar sus detalles.</p>
+
+            <div class="tabs-nav-container reveal">
+                <button class="tab-link active" onclick="openCategory(event, 'tab-pestanas')">Pestañas</button>
+                <button class="tab-link" onclick="openCategory(event, 'tab-cejas')">Cejas</button>
+                <button class="tab-link" onclick="openCategory(event, 'tab-experiencias')">Experiencias Sari</button>
+                <button class="tab-link" onclick="openCategory(event, 'tab-labios')">Labios</button>
+            </div>
+
+            <!-- CONTENIDO: PESTAÑAS -->
+            <div id="tab-pestanas" class="tab-content active-content">
+                <div class="servicio-card">
+                    <img src="5.jpg" class="servicio-img" alt="Lash Lifting">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Lash Lifting</h4><span class="precio">$300</span></div>
+                        <p class="servicio-desc">Tratamiento semipermanente que levanta y riza tu pestaña natural desde la raíz, dando una apariencia de pestañas más largas y pobladas. Incluye tinte y nutrición.</p>
+                        <span class="micro-copy">✦ Incluye mapeo de curvatura personalizado según tu párpado</span>
+                        <div class="servicio-detalles"><span>⏱️ 1 Hr</span><span>🗓️ Duración: 4 a 6 semanas</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <img src="1.jpg" class="servicio-img" alt="Extensiones Clásicas">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Extensiones Técnica Clásica</h4><span class="precio">$500</span></div>
+                        <p class="servicio-desc">Aplicación de 1 extensión en 1 de tus pestañas naturales, logrando un efecto de pestañas más largas y pobladas.</p>
+                        <span class="micro-copy">✦ Incluye valoración de grosor saludable para tu pestaña natural</span>
+                        <div class="servicio-detalles"><span>⏱️ 2 Hrs 30 Min</span><span>🔄 Retoque (15-18 días): $350 | Después de 19 días: $500</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <img src="3.jpg" class="servicio-img" alt="Extensiones Hawaianas">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Extensiones Volumen Hawaiano</h4><span class="precio">$430</span></div>
+                        <p class="servicio-desc">Técnica que consiste en aplicar fibras tecnológicas "YY" creando un volumen sutil, dando la apariencia de pestañas más largas y pobladas con un estilo natural.</p>
+                        <span class="magic-badge" style="margin-top: 8px; font-size: 11px;">★ Más Popular</span>
+                        <div class="servicio-detalles"><span>⏱️ 2 Hrs 30 Min</span><span>🔄 Retoque (15-18 días): $300 | Después de 19 días: $430</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <img src="4.jpg" class="servicio-img" alt="Teddy Lashes">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Teddy Lashes (Hawaiano Café)</h4><span class="precio">$500</span></div>
+                        <p class="servicio-desc">Extensiones de pestañas volumen hawaiano color café. Técnica que consiste en aplicar fibras tecnológicas “yy” creando un volumen sutil, dando la apariencia de pestañas más largas y pobladas con un estilo natural.</p>
+                        <span class="micro-copy">✦ Acabado chocolate ultra suave para un look sutil y elegante</span>
+                        <div class="servicio-detalles"><span>⏱️ 2 Hrs 30 Min</span><span>🔄 Retoque (15-18 días): $350 | Después de 19 días: $500</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <img src="11.jpg" class="servicio-img" alt="Efecto Máscara">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Extensiones Efecto Máscara</h4><span class="precio">$500</span></div>
+                        <p class="servicio-desc">Aplicación de 1 extensión en 1 de tus pestañas naturales, logrando un efecto de pestañas más largas y negras, dando el efecto de máscara de pestañas.</p>
+                        <span class="micro-copy">✦ Da un efecto oscuro, denso y perfectamente alineado</span>
+                        <div class="servicio-detalles"><span>⏱️ 2 Hrs 30 Min</span><span>🔄 Retoque (15-18 días): $350 | Después de 19 días: $500</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <img src="2.jpg" class="servicio-img" alt="Extensiones Aura">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Extensiones Aura</h4><span class="precio">$500</span></div>
+                        <p class="servicio-desc">Técnica que consiste en aplicar fibras tecnológicas "YY" "U" que dan un aspecto de pestañas mucho más pobladas, sin perder la naturalidad y elegancia.</p>
+                        <span class="micro-copy">✦ Mapeo avanzado de volumen híbrido multidimensional</span>
+                        <div class="servicio-detalles"><span>⏱️ 2 Hrs 30 Min</span><span>🔄 Retoque (15-18 días): $350 | Después de 19 días: $500</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Extensiones Volumen Griego 3D</h4><span class="precio">$600</span></div>
+                        <p class="servicio-desc">Técnica que consiste en aplicar fibras tecnológicas "3D" creando un volumen sutil, dando la apariencia de pestañas más largas y pobladas con un estilo natural.</p>
+                        <span class="micro-copy">✦ Efecto tupido con fibras tecnológicas de peso ultra pluma</span>
+                        <div class="servicio-detalles"><span>⏱️ 2 Hrs 30 Min</span><span>🔄 Retoque (15-18 días): $450 | Después de 19 días: $600</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Extensiones Volumen 4D</h4><span class="precio">$650</span></div>
+                        <p class="servicio-desc">Técnica que consiste en aplicar fibras tecnológicas 4D creando un volumen sutil, dando la apariencia de pestañas más largas y pobladas con un estilo natural.</p>
+                        <span class="micro-copy">✦ Máxima densidad tecnológica con un acabado sofisticado</span>
+                        <div class="servicio-detalles"><span>⏱️ 2 Hrs 30 Min</span><span>🔄 Retoque (15-18 días): $500 | Después de 19 días: $650</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Retiro de Extensiones</h4><span class="precio">$100 - $150</span></div>
+                        <p class="servicio-desc">Remoción segura con removedor en crema que protege tu pestaña natural de jalones.</p>
+                        <span class="micro-copy">✦ Retiro Sari Studio: $100 | Trabajo de otro estudio: $150</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENIDO: CEJAS -->
+            <div id="tab-cejas" class="tab-content">
+                <div class="servicio-card">
+                    <img src="10.jpg" class="servicio-img" alt="Diseño de Cejas">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Diseño de Cejas</h4><span class="precio">$250</span></div>
+                        <p class="servicio-desc">Diseño de cejas totalmente personalizado a tus facciones y gustos. Incluye epilación con cera y Brow Spa.</p>
+                        <span class="micro-copy">✦ Incluye visajismo con calibrador para simetría perfecta</span>
+                        <div class="servicio-detalles"><span>⏱️ 30 Min</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <img src="7.jpg" class="servicio-img" alt="Brow Lamination">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Brow Lamination</h4><span class="precio">$300</span></div>
+                        <p class="servicio-desc">Tratamiento semipermanente que alinea y fija los vellos de la ceja en una dirección uniforme, logrando una apariencia más definida, ordenada y con mayor volumen, sin necesidad de maquillaje. Incluye diseño personalizado, epilación con cera y Brow Spa.</p>
+                        <span class="micro-copy">✦ Diseñado para domar vellos rebeldes y rellenar espacios visualmente</span>
+                        <div class="servicio-detalles"><span>⏱️ 1 Hra</span><span>🗓️ Duración: 4 semanas</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <img src="9.jpg" class="servicio-img" alt="Cejas HD">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Cejas HD</h4><span class="precio">$300</span></div>
+                        <p class="servicio-desc">Aplicación de henna con diseño personalizado, epilación con cera y Brow Spa.</p>
+                        <span class="micro-copy">✦ Sombreado de efecto polvo con Henna orgánica premium</span>
+                        <div class="servicio-detalles"><span>⏱️ 1 Hra</span><span>🗓️ Duración: 2 a 3 semanas</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card">
+                    <img src="6.jpg" class="servicio-img" alt="Cejas 4K">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Cejas 4K</h4><span class="precio">$400</span></div>
+                        <p class="servicio-desc">Brow Lamination, aplicación de henna, diseño personalizado, epilación con cera y Brow Spa.</p>
+                        <span class="micro-copy">✦ El servicio premium absoluto para una ceja imponente y con volumen</span>
+                        <div class="servicio-detalles"><span>⏱️ 1 Hra 30 Min</span><span>🗓️ Duración: 4 semanas</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENIDO: EXPERIENCIAS SARI -->
+            <div id="tab-experiencias" class="tab-content">
+                <div class="servicio-card combo-highlight">
+                    <img src="8.jpg" class="servicio-img" alt="Ritual Magic">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Ritual Magic</h4><span class="precio">$500</span></div>
+                        <p class="servicio-desc">Lash lifting + Brow lamination aplicados en simultáneo. La fusión ideal para transformar tu rostro de forma inmediata.</p>
+                        <span class="micro-copy">✦ Optimiza tu tiempo con dos tratamientos de alta gama a la vez</span>
+                        <div class="servicio-detalles"><span>⏱️ 2 Hrs</span><span>🗓️ Duración: 4 a 6 semanas</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card combo-highlight">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Ritual Fairy</h4><span class="precio">$550</span></div>
+                        <p class="servicio-desc">Lash lifting + Cejas HD aplicados en sesión simultánea. Potencia tus pestañas propias y dale un marco de color sombreado a tus cejas.</p>
+                        <span class="micro-copy">✦ Envuelve tus facciones en un aura de frescura</span>
+                        <div class="servicio-detalles"><span>⏱️ 1 Hra 30 Min</span><span>🗓️ Lifting: 4-6 sem | Cejas HD: 2-3 sem</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card combo-highlight">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Ritual Star</h4><span class="precio">$450</span></div>
+                        <p class="servicio-desc">Lash lifting + Diseño de ceja personalizado con epilación y Brow Spa en simultáneo.</p>
+                        <span class="micro-copy">✦ Limpieza y realce básico con acabado editorial elegante</span>
+                        <div class="servicio-detalles"><span>⏱️ 1 Hra 30 Min</span><span>🗓️ Duración Lifting: 4 a 6 semanas</span></div>
+                    </div>
+                </div>
+                <div class="servicio-card combo-highlight">
+                    <img src="12.jpg" class="servicio-img" alt="Ritual Sparkles">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Ritual Sparkles</h4><span class="precio">$650</span></div>
+                        <p class="servicio-desc">Lash lifting + Tratamiento de Cejas 4K completos en aplicación simultánea profesional.</p>
+                        <span class="micro-copy">✦ El paquete de transformación integral más cotizado del studio</span>
+                        <div class="servicio-detalles"><span>⏱️ 1 Hra 50 Min</span><span>🗓️ Lifting: 4-6 sem | Cejas 4K: 3-5 sem</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENIDO: LABIOS -->
+            <div id="tab-labios" class="tab-content">
+                <div class="servicio-card">
+                    <img src="13.jpg" class="servicio-img" alt="Hydralips con Dermapen">
+                    <div class="servicio-info-block">
+                        <div class="servicio-cabecera"><h4>Hydralips con Dermapen</h4><span class="precio">$350</span></div>
+                        <p class="servicio-desc">Tratamiento estético no invasivo que mejora la hidratación, textura y apariencia de los labios. Utiliza microagujas para infundir ácido hialurónico en capas superficiales, estimulando colágeno. Ideal para labios agrietados o secos.</p>
+                        <span class="micro-copy">✦ Aporta un volumen natural sutil por hidratación extrema, sin rellenos médicos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN POLÍTICAS -->
+    <section id="politicas" class="politicas-section">
+        <div class="contenedor-chico">
+            <h2 class="titulo-seccion reveal">Políticas para agendar tu cita</h2>
+            <div class="politicas-grid reveal">
+                <div class="politica-item"><h5>📌 Anticipo de Reserva</h5><p>Para reservar, requerimos un anticipo de $100, que se descontará al final. Por favor, no olvides enviar el comprobante.</p></div>
+                <div class="politica-item"><h5>⏱️ ¡Sé puntual!</h5><p>Te esperamos con mucho gusto, pero la tolerancia máxima es de 15 minutos. Pasado ese tiempo, la cita será cancelada.</p></div>
+                <div class="politica-item"><h5>🔄 Cambios y Cancelaciones</h5><p>Si surge algo y necesitas cancelar o reagendar, avísanos al menos con 12 horas de anticipación. Así podremos devolverte el anticipo o dejarlo como saldo a tu favor.</p></div>
+                <div class="politica-item"><h5>⚠️ Sobre el Anticipo</h5><p>Este no es reembolsable ni acumulable si no asistes o cancelas minutos antes, pero si necesitas reagendar fuera de tiempo, solo tendrás que realizar un nuevo anticipo.</p></div>
+                <div class="politica-item"><h5>🛡️ Garantía</h5><p>Queremos que ames tu look, por eso todos los sets tienen garantía de 24 horas.</p></div>
+                <div class="politica-item"><h5>🍷 Antes de tu Cita</h5><p>Cuida los resultados evitando alcohol 24 horas antes y bebidas con cafeína el día de tu cita.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMO ESPEJO COMPLETO -->
+    <section id="promos" class="promo-section reveal">
+        <div class="glass-mirror-container">
+            <div class="glass-card-inner">
+                <span class="badge-promo">Promoción Eterna ✨</span>
+                <h3>Mirror Selfie 10% OFF</h3>
+                <p>Captura tu nuevo look. Sube una selfie en nuestro espejo o mostrando los resultados de tu servicio en tus historias de Instagram, etiquétanos como <strong>@saristudio_</strong> y obtén un 10% de descuento inmediato en tu sesión.</p>
+            </div>
+            <div class="glass-shimmer-line"></div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: PREGUNTAS FRECUENTES -->
+    <section id="faq" class="faq-section reveal">
+        <div class="contenedor-chico">
+            <h2 class="titulo-seccion">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">¿Las extensiones de pestañas dañan mis pestañas naturales?</button>
+                    <div class="faq-answer">
+                        <p>No. En Sari Studio realizamos un aislamiento minucioso y calculamos el peso y longitud exactos que tu pestaña natural puede soportar de manera saludable. Tus pestañas seguirán su ciclo de crecimiento natural sin sufrir ningún daño.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuál es la diferencia entre Lash Lifting y Extensiones?</button>
+                    <div class="faq-answer">
+                        <p>El Lash Lifting trabaja sobre tus propias pestañas, estirándolas y rizándolas desde la raíz para un efecto natural de rímel. Las extensiones de pestañas son fibras sintéticas ultra ligeras que se adhieren una a una para añadir longitud, grosor y volumen personalizado.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuánto tiempo duran las extensiones de pestañas?</button>
+                    <div class="faq-answer">
+                        <p>El set puede durar de 4 a 6 semanas dependiendo del ciclo de muda de tus pestañas naturales y tus cuidados. Sin embargo, para mantener el set tupido, impecable y simétrico, requerirás retoques periódicos entre los 15 y 18 días.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué es el Brow Spa y por qué lo incluyen?</button>
+                    <div class="faq-answer">
+                        <p>El Brow Spa es un protocolo de relajación, exfoliación e hidratación profunda para la zona de la ceja. Lo incluimos en nuestros servicios porque una piel sana, limpia y nutrida garantiza una mejor retención del pigmento de la henna y una epilación mucho más cómoda.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿El tratamiento Hydralips duele?</button>
+                    <div class="faq-answer">
+                        <p>No. Aunque se utiliza un dispositivo Dermapen con microagujas, la aplicación se realiza de forma muy superficial y controlada en las capas externas de la piel. Es un procedimiento totalmente tolerable que se siente como una exfoliación vibratoria activa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULARIO AGENDA -->
+    <section id="agendar" class="agenda-section">
+        <div class="contenedor-formulario reveal">
+            <h2>¡Aparta tu cita!</h2>
+            <p>Elige tu servicio y tu horario ideal. Envía tu solicitud y te confirmaremos la disponibilidad muy pronto.</p>
+            <form id="formulario-cita" class="form-beauty">
+                <div class="grupo-input">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" required placeholder="Ej. María Fernández">
+                </div>
+                <div class="grupo-input">
+                    <label for="whatsapp">Tu WhatsApp</label>
+                    <input type="tel" id="whatsapp" required placeholder="Ej. 5512345678">
+                </div>
+                <div class="grupo-input">
+                    <label for="servicio">Servicio de Interés</label>
+                    <select id="servicio" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="Lash Lifting ($300)">Lash Lifting — $300</option>
+                        <option value="Extensiones Clásicas ($500)">Extensiones Técnica Clásica — $500</option>
+                        <option value="Volumen Hawaiano ($430)">Extensiones Volumen Hawaiano — $430</option>
+                        <option value="Teddy Lashes ($500)">Teddy Lashes (Hawaiano Café) — $500</option>
+                        <option value="Efecto Máscara ($500)">Extensiones Efecto Máscara — $500</option>
+                        <option value="Extensiones Aura ($500)">Extensiones Aura — $500</option>
+                        <option value="Volumen Griego 3D ($600)">Extensiones Volumen Griego 3D — $600</option>
+                        <option value="Volumen 4D ($650)">Extensiones Volumen 4D — $650</option>
+                        <option value="Diseño de Cejas ($250)">Diseño de Cejas — $250</option>
+                        <option value="Brow Lamination ($300)">Brow Lamination — $300</option>
+                        <option value="Cejas HD ($300)">Cejas HD — $300</option>
+                        <option value="Cejas 4K ($400)">Cejas 4K — $400</option>
+                        <option value="Combo Magic ($500)">Ritual Magic (Lashes + Brows) — $500</option>
+                        <option value="Combo Fairy ($550)">Ritual Fairy (Lashes + Henna) — $550</option>
+                        <option value="Combo Star ($450)">Ritual Star (Lashes + Diseño) — $450</option>
+                        <option value="Combo Sparkles ($650)">Ritual Sparkles (Lashes + Cejas 4K) — $650</option>
+                        <option value="Hydralips ($350)">Hydralips con Dermapen — $350</option>
+                    </select>
+                </div>
+                <div id="smart-tip-box" class="smart-tip-card hidden">
+                    <span class="tip-icon">💡</span>
+                    <p id="smart-tip-text">Tip de cuidado previo...</p>
+                </div>
+                <div class="fila-doble">
+                    <div class="grupo-input">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label for="hora">Hora</label>
+                        <select id="hora" required>
+                            <option value="" disabled selected>Selecciona una hora</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="09:30">09:30 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="10:30">10:30 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="11:30">11:30 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="12:30">12:30 PM</option>
+                            <option value="13:00">01:00 PM</option>
+                            <option value="13:30">01:30 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="14:30">02:30 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="15:30">03:30 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="16:30">04:30 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                            <option value="17:30">05:30 PM</option>
+                            <option value="18:00">06:00 PM</option>
+                            <option value="18:30">06:30 PM</option>
+                            <option value="19:00">07:00 PM</option>
+                            <option value="19:30">07:30 PM</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-enviar">Solicitar Cita vía WhatsApp</button>
+            </form>
+            <div class="info-footer-studio">
+                <p>📍 <strong>Home Studio:</strong> San Mateo Oxtotitlan, Toluca, Edo. Mex.</p>
+                <p>💳 <strong>Método de pago:</strong> Efectivo, Transferencia, Tarjetas de Crédito y Débito</p>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2026 Sari Studio. Todos los derechos reservados.</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>
