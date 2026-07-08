@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     document.getElementById('formulario-cita')?.addEventListener('submit', function(e) {
         e.preventDefault();
-        const numeroWhatsAppSariStudio = "527226899514"; 
+        const numeroWhatsAppSariStudio = "527224173650"; 
 
         const nombreCliente = document.getElementById('nombre').value.trim();
         const whatsappCliente = document.getElementById('whatsapp').value.trim();
