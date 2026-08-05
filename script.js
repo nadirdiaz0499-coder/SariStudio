@@ -48,10 +48,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const sliderHandle = document.getElementById('slider-handle');
 
     if (sliderContainer && beforeLayer && sliderHandle) {
-        const moverSlider = (clientX) => {
-            const rect = sliderContainer.getBoundingClientRect();
-            const posicionX = clientX - rect.left;
-            let porcentaje = (posicionX / rect.width) * 100;
+        // Cacheamos el rect del contenedor y solo lo recalculamos cuando
+        // realmente puede haber cambiado (al iniciar el movimiento o al
+        // redimensionar), en vez de en cada evento de mouse/touch.
+        let rectCache = sliderContainer.getBoundingClientRect();
+        let clientXPendiente = null;
+        let frameProgramado = false;
+
+        const actualizarRect = () => {
+            rectCache = sliderContainer.getBoundingClientRect();
+        };
+        window.addEventListener('resize', actualizarRect);
+
+        const aplicarPosicion = () => {
+            frameProgramado = false;
+            const posicionX = clientXPendiente - rectCache.left;
+            let porcentaje = (posicionX / rectCache.width) * 100;
 
             // Bloqueamos bordes físicos del lienzo
             if (porcentaje < 0) porcentaje = 0;
@@ -66,12 +78,27 @@ document.addEventListener("DOMContentLoaded", () => {
             beforeLayer.style.webkitClipPath = `inset(0 ${clipRight}% 0 0)`;
         };
 
+        // En vez de recalcular y pintar en cada evento (que puede disparar
+        // decenas de veces por segundo), guardamos la última posición y
+        // solo pintamos una vez por frame con requestAnimationFrame.
+        const moverSlider = (clientX) => {
+            clientXPendiente = clientX;
+            if (!frameProgramado) {
+                frameProgramado = true;
+                requestAnimationFrame(aplicarPosicion);
+            }
+        };
+
         // Evento Escritorio
         sliderContainer.addEventListener('mousemove', (e) => {
             moverSlider(e.clientX);
-        });
+        }, { passive: true });
+
+        // Al entrar con el mouse, refrescamos el rect por si hubo scroll/resize
+        sliderContainer.addEventListener('mouseenter', actualizarRect);
 
         // Evento Celulares
+        sliderContainer.addEventListener('touchstart', actualizarRect, { passive: true });
         sliderContainer.addEventListener('touchmove', (e) => {
             if (e.touches && e.touches[0]) {
                 e.preventDefault(); 
