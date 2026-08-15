@@ -40,26 +40,19 @@
         "latitude": "19.288452",
         "longitude": "-99.668163"
       },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "09:00",
-          "closes": "19:30"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Saturday"],
-          "opens": "09:00",
-          "closes": "14:30"
-        }
-      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "19:30"
+      },
       "areaServed": [
         {
           "@type": "AdministrativeArea",
@@ -466,7 +459,11 @@
                 <div class="fila-doble">
                     <div class="grupo-input">
                         <label for="fecha">Fecha</label>
-                        <input type="date" id="fecha" required>
+                        <div class="fecha-input-container">
+                            <input type="date" id="fecha" required>
+                            <!-- Texto de ayuda visual: iOS Safari no muestra placeholder nativo en inputs de fecha -->
+                            <span id="fecha-placeholder-texto" class="fecha-placeholder-texto">Selecciona una fecha</span>
+                        </div>
                     </div>
                     <div class="grupo-input">
                         <label for="hora">Hora</label>
@@ -502,7 +499,7 @@
             <div class="info-footer-studio">
                 <!-- ACTUALIZACIÓN DE DIRECCIÓN (nueva sede San Bernardino): se quitó "Home Studio" y se agregó dirección completa + horarios + botón de Google Maps -->
                 <p>📍 <strong>Ubicación:</strong> Calle Fray Buenaventura Merlín 303, Interior 7, San Bernardino, C.P. 50080, Toluca, Estado de México</p>
-                <p>🕘 <strong>Horarios:</strong> Lunes a viernes de 9:00 a 19:30 hrs · Sábados de 9:00 a 14:30 hrs</p>
+                <p>🕘 <strong>Horarios:</strong> Lunes a sábado de 9:00 a 19:30 hrs</p>
                 <p>💳 <strong>Método de pago:</strong> Efectivo, Transferencia, Tarjetas de Crédito y Débito</p>
                 <a class="btn-maps" href="https://www.google.com/maps/search/?api=1&query=Calle%20Fray%20Buenaventura%20Merl%C3%ADn%20303%2C%20Interior%207%2C%20San%20Bernardino%2C%2050080%20Toluca%20de%20Lerdo%2C%20Estado%20de%20M%C3%A9xico" target="_blank" rel="noopener noreferrer">
                     📍 Cómo llegar en Google Maps

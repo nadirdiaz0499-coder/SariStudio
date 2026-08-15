@@ -481,7 +481,37 @@ nav a:hover { color: #b1c57c; }
 /* Los inputs de fecha nativos calculan su propio ancho mínimo de contenido
    y por default ignoran el ancho del contenedor flex; forzamos que respeten
    el espacio disponible para que no se salgan del formulario al elegir fecha */
-.fila-doble .grupo-input input[type="date"] { min-width: 0; max-width: 100%; }
+.fila-doble .grupo-input input[type="date"] {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    /* Bug conocido de Safari/iOS: ignora width:100% en inputs de fecha y usa
+       su propio ancho interno, causando que se salga del contenedor. Esta
+       propiedad es la que realmente lo obliga a respetar el ancho disponible */
+    -webkit-min-logical-width: 100%;
+    box-sizing: border-box;
+    /* iOS Safari le da al input de fecha un alto interno propio (mucho más
+       grande que un input normal) que ignora nuestro padding; -webkit-appearance:none
+       lo resetea para que se vea del mismo tamaño que los demás campos */
+    -webkit-appearance: none;
+    appearance: none;
+    height: 48px;
+    line-height: 1.2;
+}
+
+/* Texto de ayuda visual sobre el campo Fecha: iOS Safari no dibuja placeholder
+   nativo en inputs de tipo date, así que simulamos uno con este span */
+.fecha-input-container { position: relative; overflow: hidden; width: 100%; }
+.fecha-placeholder-texto {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9a9a9a;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    pointer-events: none; /* deja pasar el toque/clic hacia el input real de abajo */
+}
 
 .btn-enviar { width: 100%; padding: 16px; background-color: #b1c57c; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
 .btn-enviar:hover { background-color: #9cb16b; }
