@@ -218,13 +218,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================
-    // 5.5 RESTRICCIÓN DE HORARIOS SEGÚN DÍA (Lun-Vie 9:00-19:30, Sáb 9:00-14:30, Dom cerrado)
+    // 5.5 RESTRICCIÓN DE HORARIOS (Lun-Vie 9:00-19:30, Sáb 9:00-14:30, Dom cerrado)
     // ==========================================
     const inputFecha = document.getElementById('fecha');
     const selectHora = document.getElementById('hora');
 
     if (inputFecha && selectHora) {
-        // Guardamos las opciones de hora originales (el rango completo Lun-Vie) para poder restaurarlas
+        // Guardamos las opciones de hora originales (rango completo Lun-Vie 9:00-19:30)
         const opcionesHoraOriginales = Array.from(selectHora.options).map(opt => ({
             value: opt.value,
             texto: opt.textContent
@@ -244,8 +244,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         };
 
-        inputFecha.addEventListener('change', () => {
-            if (!inputFecha.value) return;
+        const validarYFiltrarFecha = () => {
+            if (!inputFecha.value) return true;
 
             // Parseamos "YYYY-MM-DD" manualmente para evitar corrimientos de zona horaria
             const [anio, mes, dia] = inputFecha.value.split('-').map(Number);
@@ -256,14 +256,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert('Los domingos el estudio permanece cerrado 🌙. Por favor elige un día de lunes a sábado.');
                 inputFecha.value = '';
                 repintarOpcionesHora(opcionesHoraOriginales);
-                return;
+                return false;
             }
 
-            // Sábado cierra a las 14:30, el resto de la semana a las 19:30
+            // Sábado cierra a las 14:30, el resto de la semana (Lun-Vie) a las 19:30
             const horaLimite = diaSemana === 6 ? '14:30' : '19:30';
             const opcionesFiltradas = opcionesHoraOriginales.filter(opt => opt.value === '' || opt.value <= horaLimite);
             repintarOpcionesHora(opcionesFiltradas);
-        });
+            return true;
+        };
+
+        // Validamos tanto al escribir/elegir como al perder el foco (cubre distintos comportamientos de móvil/escritorio)
+        inputFecha.addEventListener('change', validarYFiltrarFecha);
+        inputFecha.addEventListener('input', validarYFiltrarFecha);
     }
 
     // ==========================================
@@ -278,6 +283,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const servicioSeleccionado = document.getElementById('servicio').value;
         const fechaCita = document.getElementById('fecha').value;
         const horaCita = document.getElementById('hora').value;
+
+        // Candado de seguridad: si por alguna razón la fecha llegó siendo domingo, no dejamos enviar
+        if (fechaCita) {
+            const [anioChk, mesChk, diaChk] = fechaCita.split('-').map(Number);
+            if (new Date(anioChk, mesChk - 1, diaChk).getDay() === 0) {
+                alert('Los domingos el estudio permanece cerrado 🌙. Por favor elige un día de lunes a sábado.');
+                return;
+            }
+        }
 
         const fechaLimpia = fechaCita.split('-').reverse().join('/');
 
