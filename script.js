@@ -222,6 +222,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     const inputFecha = document.getElementById('fecha');
     const selectHora = document.getElementById('hora');
+    const fechaPlaceholderTexto = document.getElementById('fecha-placeholder-texto');
+
+    // Oculta/muestra el texto de ayuda "Selecciona una fecha" según si el campo ya tiene valor
+    const actualizarPlaceholderFecha = () => {
+        if (!fechaPlaceholderTexto) return;
+        fechaPlaceholderTexto.style.display = inputFecha.value ? 'none' : 'block';
+    };
+    if (inputFecha) {
+        actualizarPlaceholderFecha();
+        inputFecha.addEventListener('input', actualizarPlaceholderFecha);
+        inputFecha.addEventListener('change', actualizarPlaceholderFecha);
+    }
 
     if (inputFecha && selectHora) {
         // Guardamos las opciones de hora originales (rango completo Lun-Vie 9:00-19:30)
@@ -253,8 +265,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const diaSemana = fechaSeleccionada.getDay(); // 0 = Domingo ... 6 = Sábado
 
             if (diaSemana === 0) {
-                alert('Los domingos el estudio permanece cerrado 🌙. Por favor elige un día de lunes a sábado.');
+                alert('Los domingos el estudio permanece cerrado. Por favor elige un día de lunes a sábado ✨✨✨');
                 inputFecha.value = '';
+                actualizarPlaceholderFecha();
                 repintarOpcionesHora(opcionesHoraOriginales);
                 return false;
             }
@@ -288,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (fechaCita) {
             const [anioChk, mesChk, diaChk] = fechaCita.split('-').map(Number);
             if (new Date(anioChk, mesChk - 1, diaChk).getDay() === 0) {
-                alert('Los domingos el estudio permanece cerrado 🌙. Por favor elige un día de lunes a sábado.');
+                alert('Los domingos el estudio permanece cerrado. Por favor elige un día de lunes a sábado ✨✨✨');
                 return;
             }
         }
