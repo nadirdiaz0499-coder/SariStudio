@@ -223,11 +223,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputFecha = document.getElementById('fecha');
     const selectHora = document.getElementById('hora');
     const fechaPlaceholderTexto = document.getElementById('fecha-placeholder-texto');
+    // Solo iOS (Safari) no dibuja ningún texto nativo en el input de fecha vacío;
+    // Chrome/Edge/Firefox en escritorio y Android SÍ muestran su propio "mm/dd/aaaa",
+    // así que ahí no debemos mostrar nuestro texto o se encima con el nativo
+    const esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     // Oculta/muestra el texto de ayuda "Selecciona una fecha" según si el campo ya tiene valor
     const actualizarPlaceholderFecha = () => {
         if (!fechaPlaceholderTexto) return;
-        fechaPlaceholderTexto.style.display = inputFecha.value ? 'none' : 'block';
+        fechaPlaceholderTexto.style.display = (esIOS && !inputFecha.value) ? 'block' : 'none';
     };
     if (inputFecha) {
         actualizarPlaceholderFecha();
