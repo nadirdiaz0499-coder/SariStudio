@@ -218,6 +218,55 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================
+    // 5.5 RESTRICCIÓN DE HORARIOS SEGÚN DÍA (Lun-Vie 9:00-19:30, Sáb 9:00-14:30, Dom cerrado)
+    // ==========================================
+    const inputFecha = document.getElementById('fecha');
+    const selectHora = document.getElementById('hora');
+
+    if (inputFecha && selectHora) {
+        // Guardamos las opciones de hora originales (el rango completo Lun-Vie) para poder restaurarlas
+        const opcionesHoraOriginales = Array.from(selectHora.options).map(opt => ({
+            value: opt.value,
+            texto: opt.textContent
+        }));
+
+        const repintarOpcionesHora = (opciones) => {
+            selectHora.innerHTML = '';
+            opciones.forEach(opt => {
+                const nuevaOpcion = document.createElement('option');
+                nuevaOpcion.value = opt.value;
+                nuevaOpcion.textContent = opt.texto;
+                if (opt.value === '') {
+                    nuevaOpcion.disabled = true;
+                    nuevaOpcion.selected = true;
+                }
+                selectHora.appendChild(nuevaOpcion);
+            });
+        };
+
+        inputFecha.addEventListener('change', () => {
+            if (!inputFecha.value) return;
+
+            // Parseamos "YYYY-MM-DD" manualmente para evitar corrimientos de zona horaria
+            const [anio, mes, dia] = inputFecha.value.split('-').map(Number);
+            const fechaSeleccionada = new Date(anio, mes - 1, dia);
+            const diaSemana = fechaSeleccionada.getDay(); // 0 = Domingo ... 6 = Sábado
+
+            if (diaSemana === 0) {
+                alert('Los domingos el estudio permanece cerrado 🌙. Por favor elige un día de lunes a sábado.');
+                inputFecha.value = '';
+                repintarOpcionesHora(opcionesHoraOriginales);
+                return;
+            }
+
+            // Sábado cierra a las 14:30, el resto de la semana a las 19:30
+            const horaLimite = diaSemana === 6 ? '14:30' : '19:30';
+            const opcionesFiltradas = opcionesHoraOriginales.filter(opt => opt.value === '' || opt.value <= horaLimite);
+            repintarOpcionesHora(opcionesFiltradas);
+        });
+    }
+
+    // ==========================================
     // 6. ENVIAR FORMULARIO A WHATSAPP
     // ==========================================
     document.getElementById('formulario-cita')?.addEventListener('submit', function(e) {
