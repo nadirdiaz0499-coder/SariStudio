@@ -483,6 +483,26 @@ nav a:hover { color: #b1c57c; }
 .btn-enviar:hover { background-color: #9cb16b; }
 .info-footer-studio { margin-top: 30px; font-size: 13px; color: #607261; line-height: 1.6; }
 
+/* NUEVO: botón "Cómo llegar en Google Maps" (cambio de sede San Bernardino) */
+.btn-maps {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 12px 20px;
+    background-color: #ffffff;
+    color: #7f934b;
+    border: 1px solid #b1c57c;
+    border-radius: 25px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-maps:hover { background-color: #b1c57c; color: #ffffff; }
+.btn-maps:active { transform: scale(0.97); }
+
 /* --- KEYFRAMES COMPLEMENTARIOS --- */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
@@ -599,5 +619,8 @@ footer { padding: 40px; text-align: center; background-color: #faf6f5; font-size
 
     .agenda-section { padding: 40px 15px; }
     .form-beauty { padding: 25px 20px; border-radius: 16px; }
+
+    /* NUEVO: botón de Maps ocupa todo el ancho en móvil para fácil toque */
+    .btn-maps { width: 100%; justify-content: center; text-align: center; }
     .fila-doble { flex-direction: column; gap: 0; }
 }

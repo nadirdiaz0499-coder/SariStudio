@@ -25,32 +25,41 @@
       "name": "Sari Studio",
       "image": "logo_ss.png",
       "url": "https://sari.mx",
-      "telephone": "",
+      "telephone": "+527224173650",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Toluca",
+        "streetAddress": "Calle Fray Buenaventura Merlín 303, Interior 7",
+        "addressLocality": "San Bernardino, Toluca de Lerdo",
+        "postalCode": "50080",
         "addressRegion": "Estado de México",
         "addressCountry": "MX"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "19.2882",
-        "longitude": "-99.6800"
+        "latitude": "19.288452",
+        "longitude": "-99.668163"
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "opens": "09:00",
-        "closes": "19:30"
-      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "19:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "09:00",
+          "closes": "14:30"
+        }
+      ],
       "areaServed": [
         {
           "@type": "AdministrativeArea",
@@ -491,9 +500,13 @@
                 <button type="submit" class="btn-enviar">Solicitar Cita vía WhatsApp</button>
             </form>
             <div class="info-footer-studio">
-                <!-- Se añadió la cobertura geográfica en el texto informativo existente sin alterar clases ni estilos visuales -->
-                <p>📍 <strong>Home Studio:</strong> San Mateo Oxtotitlan, Toluca, Edo. Mex. (Servicio para Toluca, Metepec y alrededores)</p>
+                <!-- ACTUALIZACIÓN DE DIRECCIÓN (nueva sede San Bernardino): se quitó "Home Studio" y se agregó dirección completa + horarios + botón de Google Maps -->
+                <p>📍 <strong>Ubicación:</strong> Calle Fray Buenaventura Merlín 303, Interior 7, San Bernardino, C.P. 50080, Toluca, Estado de México</p>
+                <p>🕘 <strong>Horarios:</strong> Lunes a viernes de 9:00 a 19:30 hrs · Sábados de 9:00 a 14:30 hrs</p>
                 <p>💳 <strong>Método de pago:</strong> Efectivo, Transferencia, Tarjetas de Crédito y Débito</p>
+                <a class="btn-maps" href="https://www.google.com/maps/search/?api=1&query=Calle%20Fray%20Buenaventura%20Merl%C3%ADn%20303%2C%20Interior%207%2C%20San%20Bernardino%2C%2050080%20Toluca%20de%20Lerdo%2C%20Estado%20de%20M%C3%A9xico" target="_blank" rel="noopener noreferrer">
+                    📍 Cómo llegar en Google Maps
+                </a>
             </div>
         </div>
     </section>
