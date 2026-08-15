@@ -477,7 +477,11 @@ nav a:hover { color: #b1c57c; }
 .smart-tip-card p { font-size: 12.5px; color: #525d54; line-height: 1.4; margin-bottom: 0; }
 
 .fila-doble { display: flex; gap: 15px; }
-.fila-doble .grupo-input { flex: 1; }
+.fila-doble .grupo-input { flex: 1; min-width: 0; }
+/* Los inputs de fecha nativos calculan su propio ancho mínimo de contenido
+   y por default ignoran el ancho del contenedor flex; forzamos que respeten
+   el espacio disponible para que no se salgan del formulario al elegir fecha */
+.fila-doble .grupo-input input[type="date"] { min-width: 0; max-width: 100%; }
 
 .btn-enviar { width: 100%; padding: 16px; background-color: #b1c57c; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
 .btn-enviar:hover { background-color: #9cb16b; }
