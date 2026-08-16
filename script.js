@@ -4,11 +4,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     const bannerPrecios = document.getElementById('banner-precios');
     const cerrarBannerBtn = document.getElementById('cerrar-banner-precios');
+    let alturaBannerPx = 0;
+    let tickProgramado = false;
+
+    // El header es "fixed", así que su offset no se ajusta solo con el scroll
+    // (a diferencia de un elemento "sticky"). Simulamos ese comportamiento:
+    // el offset del header baja 1 a 1 con el scroll hasta llegar a 0, en vez
+    // de quedarse fijo a la altura original del banner para siempre.
+    const actualizarOffsetHeader = () => {
+        tickProgramado = false;
+        const scrollActual = window.scrollY || window.pageYOffset;
+        const offset = Math.max(0, alturaBannerPx - scrollActual);
+        document.documentElement.style.setProperty('--banner-height', `${offset}px`);
+    };
+
+    const pedirActualizarOffset = () => {
+        if (!tickProgramado) {
+            tickProgramado = true;
+            requestAnimationFrame(actualizarOffsetHeader);
+        }
+    };
 
     const medirAlturaBanner = () => {
         if (!bannerPrecios) return;
-        const alturaVisible = bannerPrecios.offsetParent !== null ? bannerPrecios.offsetHeight : 0;
-        document.documentElement.style.setProperty('--banner-height', `${alturaVisible}px`);
+        alturaBannerPx = bannerPrecios.offsetParent !== null ? bannerPrecios.offsetHeight : 0;
+        actualizarOffsetHeader();
     };
 
     if (bannerPrecios) {
@@ -20,11 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         medirAlturaBanner();
         window.addEventListener('resize', medirAlturaBanner);
+        window.addEventListener('scroll', pedirActualizarOffset, { passive: true });
 
         cerrarBannerBtn?.addEventListener('click', () => {
             bannerPrecios.style.display = 'none';
-            sessionStorage.setItem('bannerPreciosCerrado', 'true');
             medirAlturaBanner();
+            sessionStorage.setItem('bannerPreciosCerrado', 'true');
         });
     }
 
@@ -264,7 +285,8 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     if (inputFecha) {
         actualizarPlaceholderFecha();
-        inputFecha.addEventListener('input', actualizarPlaceholderFecha);
+        // Solo "change" (se dispara al confirmar la fecha), no "input" (se dispara
+        // en cada giro de la rueda del selector en iOS, antes de confirmar)
         inputFecha.addEventListener('change', actualizarPlaceholderFecha);
     }
 
@@ -312,9 +334,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return true;
         };
 
-        // Validamos tanto al escribir/elegir como al perder el foco (cubre distintos comportamientos de móvil/escritorio)
+        // Solo "change": se dispara hasta que el usuario confirma la fecha, no
+        // mientras aún está girando la rueda del selector (evita interrumpirlo a medias)
         inputFecha.addEventListener('change', validarYFiltrarFecha);
-        inputFecha.addEventListener('input', validarYFiltrarFecha);
     }
 
     // ==========================================
