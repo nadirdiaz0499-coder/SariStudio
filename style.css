@@ -562,6 +562,17 @@ nav a:hover { color: #b1c57c; }
     pointer-events: none; /* deja pasar el toque/clic hacia el input real de abajo */
 }
 
+/* Aviso NO bloqueante de "domingo cerrado" (reemplaza al alert() nativo,
+   que en iOS interrumpía la selección de fecha con un modal de golpe) */
+.fecha-error-texto {
+    display: none;
+    color: #c05c72;
+    font-size: 12.5px;
+    margin-top: 8px;
+    font-weight: 500;
+}
+.fecha-error-texto.visible { display: block; }
+
 .btn-enviar { width: 100%; padding: 16px; background-color: #b1c57c; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
 .btn-enviar:hover { background-color: #9cb16b; }
 .info-footer-studio { margin-top: 30px; font-size: 13px; color: #607261; line-height: 1.6; }

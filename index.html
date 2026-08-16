@@ -478,6 +478,8 @@
                             <!-- Texto de ayuda visual: iOS Safari no muestra placeholder nativo en inputs de fecha -->
                             <span id="fecha-placeholder-texto" class="fecha-placeholder-texto">Selecciona una fecha</span>
                         </div>
+                        <!-- Aviso NO bloqueante (reemplaza al alert() que interrumpía la selección en iOS) -->
+                        <span id="fecha-error-texto" class="fecha-error-texto"></span>
                     </div>
                     <div class="grupo-input">
                         <label for="hora">Hora</label>

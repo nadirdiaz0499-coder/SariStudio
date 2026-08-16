@@ -291,6 +291,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (inputFecha && selectHora) {
+        const fechaErrorTexto = document.getElementById('fecha-error-texto');
+
         // Guardamos las opciones de hora originales (rango completo Lun-Vie 9:00-18:30)
         const opcionesHoraOriginales = Array.from(selectHora.options).map(opt => ({
             value: opt.value,
@@ -311,8 +313,16 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         };
 
+        const mostrarErrorFecha = (mostrar) => {
+            if (!fechaErrorTexto) return;
+            fechaErrorTexto.textContent = mostrar
+                ? 'Los domingos el estudio permanece cerrado. Elige un día de lunes a sábado ✨'
+                : '';
+            fechaErrorTexto.classList.toggle('visible', mostrar);
+        };
+
         const validarYFiltrarFecha = () => {
-            if (!inputFecha.value) return true;
+            if (!inputFecha.value) { mostrarErrorFecha(false); return true; }
 
             // Parseamos "YYYY-MM-DD" manualmente para evitar corrimientos de zona horaria
             const [anio, mes, dia] = inputFecha.value.split('-').map(Number);
@@ -320,12 +330,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const diaSemana = fechaSeleccionada.getDay(); // 0 = Domingo ... 6 = Sábado
 
             if (diaSemana === 0) {
-                alert('Los domingos el estudio permanece cerrado. Por favor elige un día de lunes a sábado ✨✨✨');
+                // Aviso NO bloqueante: en iOS el alert() se disparaba de inmediato porque
+                // el selector nativo arranca mostrando el día de hoy antes de que el usuario
+                // toque nada, y el alert() congelaba la pantalla impidiendo elegir otra fecha
+                mostrarErrorFecha(true);
                 inputFecha.value = '';
                 actualizarPlaceholderFecha();
                 repintarOpcionesHora(opcionesHoraOriginales);
                 return false;
             }
+
+            mostrarErrorFecha(false);
 
             // Sábado cierra a las 14:30, el resto de la semana (Lun-Vie) a las 18:30
             const horaLimite = diaSemana === 6 ? '14:30' : '18:30';
@@ -356,7 +371,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (fechaCita) {
             const [anioChk, mesChk, diaChk] = fechaCita.split('-').map(Number);
             if (new Date(anioChk, mesChk - 1, diaChk).getDay() === 0) {
-                alert('Los domingos el estudio permanece cerrado. Por favor elige un día de lunes a sábado ✨✨✨');
+                const fechaErrorTexto = document.getElementById('fecha-error-texto');
+                if (fechaErrorTexto) {
+                    fechaErrorTexto.textContent = 'Los domingos el estudio permanece cerrado. Elige un día de lunes a sábado ✨';
+                    fechaErrorTexto.classList.add('visible');
+                }
+                document.getElementById('fecha')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             }
         }
