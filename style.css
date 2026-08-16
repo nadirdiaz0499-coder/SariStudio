@@ -41,10 +41,59 @@ h1, h2, h3, h4, h5 {
     margin: 0 auto 40px;
 }
 
+/* Variable dinámica: se actualiza por JS con la altura real del banner de aviso,
+   así el header (fixed) siempre queda pegado justo debajo sin taparlo */
+:root { --banner-height: 0px; }
+
+/* BANNER DE AVISO: precios vigentes solo hasta septiembre */
+.banner-promo {
+    position: relative;
+    z-index: 1001;
+    background: linear-gradient(90deg, #fbcad7, #f6dde4);
+    color: #222a23;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 12px 50px 12px 20px;
+    text-align: center;
+    font-size: 13.5px;
+}
+.banner-promo p { margin: 0; }
+.banner-promo-btn {
+    background-color: #222a23;
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12.5px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+.banner-promo-btn:hover { background-color: #38423a; }
+.banner-promo-close {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    color: #222a23;
+    opacity: 0.55;
+    padding: 4px;
+}
+.banner-promo-close:hover { opacity: 1; }
+
 /* --- MENÚ DE NAVEGACIÓN --- */
 header {
     position: fixed;
-    top: 0;
+    top: var(--banner-height);
+    transition: top 0.25s ease;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -555,6 +604,10 @@ footer { padding: 40px; text-align: center; background-color: #faf6f5; font-size
     header { padding: 10px 20px; }
     .logo-img { height: 60px; }
     nav a:not(.btn-nav) { display: none; } 
+
+    /* Banner de aviso en móvil: texto más compacto, botón centrado en su propia línea */
+    .banner-promo { padding: 10px 40px 10px 14px; font-size: 12.5px; gap: 8px; }
+    .banner-promo-btn { font-size: 12px; padding: 5px 14px; }
 
     /* Hero en móvil */
     .hero { height: 85vh; padding: 0 16px; }

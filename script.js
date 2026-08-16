@@ -1,5 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
+    // 0. BANNER DE AVISO: precios vigentes solo hasta septiembre
+    // ==========================================
+    const bannerPrecios = document.getElementById('banner-precios');
+    const cerrarBannerBtn = document.getElementById('cerrar-banner-precios');
+
+    const medirAlturaBanner = () => {
+        if (!bannerPrecios) return;
+        const alturaVisible = bannerPrecios.offsetParent !== null ? bannerPrecios.offsetHeight : 0;
+        document.documentElement.style.setProperty('--banner-height', `${alturaVisible}px`);
+    };
+
+    if (bannerPrecios) {
+        // Se recuerda solo durante la sesión del navegador: si lo cierran, no vuelve
+        // a aparecer mientras sigan navegando, pero si regresan otro día sí lo verán de nuevo
+        if (sessionStorage.getItem('bannerPreciosCerrado') === 'true') {
+            bannerPrecios.style.display = 'none';
+        }
+
+        medirAlturaBanner();
+        window.addEventListener('resize', medirAlturaBanner);
+
+        cerrarBannerBtn?.addEventListener('click', () => {
+            bannerPrecios.style.display = 'none';
+            sessionStorage.setItem('bannerPreciosCerrado', 'true');
+            medirAlturaBanner();
+        });
+    }
+
+    // ==========================================
     // 1. ENGINE DE ANIMACIÓN POR SCROLL (REVEAL)
     // ==========================================
     const elementosReveal = document.querySelectorAll('.reveal');
@@ -218,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================
-    // 5.5 RESTRICCIÓN DE HORARIOS (Lun-Vie 9:00-19:30, Sáb 9:00-14:30, Dom cerrado)
+    // 5.5 RESTRICCIÓN DE HORARIOS (Lun-Vie 9:00-18:30, Sáb 9:00-14:30, Dom cerrado)
     // ==========================================
     const inputFecha = document.getElementById('fecha');
     const selectHora = document.getElementById('hora');
@@ -240,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (inputFecha && selectHora) {
-        // Guardamos las opciones de hora originales (rango completo Lun-Vie 9:00-19:30)
+        // Guardamos las opciones de hora originales (rango completo Lun-Vie 9:00-18:30)
         const opcionesHoraOriginales = Array.from(selectHora.options).map(opt => ({
             value: opt.value,
             texto: opt.textContent
@@ -276,8 +305,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 return false;
             }
 
-            // Sábado cierra a las 14:30, el resto de la semana (Lun-Vie) a las 19:30
-            const horaLimite = diaSemana === 6 ? '14:30' : '19:30';
+            // Sábado cierra a las 14:30, el resto de la semana (Lun-Vie) a las 18:30
+            const horaLimite = diaSemana === 6 ? '14:30' : '18:30';
             const opcionesFiltradas = opcionesHoraOriginales.filter(opt => opt.value === '' || opt.value <= horaLimite);
             repintarOpcionesHora(opcionesFiltradas);
             return true;

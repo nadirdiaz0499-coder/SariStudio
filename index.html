@@ -51,7 +51,7 @@
             "Friday"
           ],
           "opens": "09:00",
-          "closes": "19:30"
+          "closes": "18:30"
         },
         {
           "@type": "OpeningHoursSpecification",
@@ -79,6 +79,13 @@
     </script>
 </head>
 <body>
+
+    <!-- BANNER DE AVISO: precios vigentes solo hasta septiembre -->
+    <div id="banner-precios" class="banner-promo">
+        <p>✨ <strong>Precios vigentes solo hasta septiembre.</strong> Agenda tu cita antes de que cambien.</p>
+        <a href="#agendar" class="banner-promo-btn">Agendar ahora</a>
+        <button type="button" class="banner-promo-close" id="cerrar-banner-precios" aria-label="Cerrar aviso">&times;</button>
+    </div>
 
     <header>
         <div class="logo"><img src="logo_ss.png" alt="Sari Studio Logo" class="logo-img"></div>
@@ -496,8 +503,6 @@
                             <option value="17:30">05:30 PM</option>
                             <option value="18:00">06:00 PM</option>
                             <option value="18:30">06:30 PM</option>
-                            <option value="19:00">07:00 PM</option>
-                            <option value="19:30">07:30 PM</option>
                         </select>
                     </div>
                 </div>
@@ -506,7 +511,7 @@
             <div class="info-footer-studio">
                 <!-- ACTUALIZACIÓN DE DIRECCIÓN (nueva sede San Bernardino): se quitó "Home Studio" y se agregó dirección completa + horarios + botón de Google Maps -->
                 <p>📍 <strong>Ubicación:</strong> Calle Fray Buenaventura Merlín 303, Interior 7, San Bernardino, C.P. 50080, Toluca, Estado de México</p>
-                <p>🕘 <strong>Horarios:</strong> Lunes a viernes de 9:00 a 19:30 hrs · Sábados de 9:00 a 14:30 hrs</p>
+                <p>🕘 <strong>Horarios:</strong> Lunes a viernes de 9:00 a 18:30 hrs · Sábados de 9:00 a 14:30 hrs</p>
                 <p>💳 <strong>Método de pago:</strong> Efectivo, Transferencia, Tarjetas de Crédito y Débito</p>
                 <a class="btn-maps" href="https://www.google.com/maps/search/?api=1&query=Calle%20Fray%20Buenaventura%20Merl%C3%ADn%20303%2C%20Interior%207%2C%20San%20Bernardino%2C%2050080%20Toluca%20de%20Lerdo%2C%20Estado%20de%20M%C3%A9xico" target="_blank" rel="noopener noreferrer">
                     📍 Cómo llegar en Google Maps
