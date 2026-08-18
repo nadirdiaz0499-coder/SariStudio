@@ -313,13 +313,27 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         };
 
-        const mostrarErrorFecha = (mostrar) => {
+        const mostrarErrorFecha = (mostrar, mensaje) => {
             if (!fechaErrorTexto) return;
-            fechaErrorTexto.textContent = mostrar
-                ? 'Los domingos el estudio permanece cerrado. Elige un día de lunes a sábado ✨'
-                : '';
+            fechaErrorTexto.textContent = mostrar ? mensaje : '';
             fechaErrorTexto.classList.toggle('visible', mostrar);
         };
+
+        // Calcula "hoy" en formato YYYY-MM-DD según la hora local del navegador de la clienta
+        const obtenerHoyLocal = () => {
+            const ahora = new Date();
+            const anio = ahora.getFullYear();
+            const mes = String(ahora.getMonth() + 1).padStart(2, '0');
+            const dia = String(ahora.getDate()).padStart(2, '0');
+            return { anio, mes: Number(mes), dia: Number(dia), texto: `${anio}-${mes}-${dia}` };
+        };
+
+        // Bloqueo nativo: el calendario no deja ni tocar el día de hoy ni fechas pasadas.
+        // Le sumamos 1 día al mínimo para que "hoy" tampoco sea seleccionable.
+        const hoy = obtenerHoyLocal();
+        const mañana = new Date(hoy.anio, hoy.mes - 1, hoy.dia + 1);
+        const mañanaTexto = `${mañana.getFullYear()}-${String(mañana.getMonth() + 1).padStart(2, '0')}-${String(mañana.getDate()).padStart(2, '0')}`;
+        inputFecha.min = mañanaTexto;
 
         const validarYFiltrarFecha = () => {
             if (!inputFecha.value) { mostrarErrorFecha(false); return true; }
@@ -328,12 +342,23 @@ document.addEventListener("DOMContentLoaded", () => {
             const [anio, mes, dia] = inputFecha.value.split('-').map(Number);
             const fechaSeleccionada = new Date(anio, mes - 1, dia);
             const diaSemana = fechaSeleccionada.getDay(); // 0 = Domingo ... 6 = Sábado
+            const hoyActual = obtenerHoyLocal();
+            const fechaHoy = new Date(hoyActual.anio, hoyActual.mes - 1, hoyActual.dia);
+
+            // Respaldo por si el navegador ignora el "min" nativo (ej. escritura manual en desktop)
+            if (fechaSeleccionada <= fechaHoy) {
+                mostrarErrorFecha(true, 'No se aceptan citas para el mismo día. Elige una fecha posterior con al menos un día de anticipación ✨');
+                inputFecha.value = '';
+                actualizarPlaceholderFecha();
+                repintarOpcionesHora(opcionesHoraOriginales);
+                return false;
+            }
 
             if (diaSemana === 0) {
                 // Aviso NO bloqueante: en iOS el alert() se disparaba de inmediato porque
                 // el selector nativo arranca mostrando el día de hoy antes de que el usuario
                 // toque nada, y el alert() congelaba la pantalla impidiendo elegir otra fecha
-                mostrarErrorFecha(true);
+                mostrarErrorFecha(true, 'Los domingos el estudio permanece cerrado. Elige un día de lunes a sábado ✨');
                 inputFecha.value = '';
                 actualizarPlaceholderFecha();
                 repintarOpcionesHora(opcionesHoraOriginales);
@@ -367,13 +392,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const fechaCita = document.getElementById('fecha').value;
         const horaCita = document.getElementById('hora').value;
 
-        // Candado de seguridad: si por alguna razón la fecha llegó siendo domingo, no dejamos enviar
+        // Candado de seguridad: si por alguna razón la fecha llegó siendo domingo o del mismo día, no dejamos enviar
         if (fechaCita) {
             const [anioChk, mesChk, diaChk] = fechaCita.split('-').map(Number);
-            if (new Date(anioChk, mesChk - 1, diaChk).getDay() === 0) {
-                const fechaErrorTexto = document.getElementById('fecha-error-texto');
+            const fechaChk = new Date(anioChk, mesChk - 1, diaChk);
+            const ahoraChk = new Date();
+            const hoyChk = new Date(ahoraChk.getFullYear(), ahoraChk.getMonth(), ahoraChk.getDate());
+            const fechaErrorTexto = document.getElementById('fecha-error-texto');
+
+            let mensajeError = null;
+            if (fechaChk <= hoyChk) {
+                mensajeError = 'No se aceptan citas para el mismo día. Elige una fecha posterior con al menos un día de anticipación ✨';
+            } else if (fechaChk.getDay() === 0) {
+                mensajeError = 'Los domingos el estudio permanece cerrado. Elige un día de lunes a sábado ✨';
+            }
+
+            if (mensajeError) {
                 if (fechaErrorTexto) {
-                    fechaErrorTexto.textContent = 'Los domingos el estudio permanece cerrado. Elige un día de lunes a sábado ✨';
+                    fechaErrorTexto.textContent = mensajeError;
                     fechaErrorTexto.classList.add('visible');
                 }
                 document.getElementById('fecha')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
