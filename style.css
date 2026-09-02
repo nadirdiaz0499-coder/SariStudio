@@ -289,6 +289,27 @@ nav a:hover { color: #b1c57c; }
 .artist-text h2 { font-size: 38px; margin-bottom: 20px; font-weight: 600; }
 .artist-text p { font-size: 15px; color: #525d54; line-height: 1.7; margin-bottom: 15px; }
 
+/* "Ver más" del texto de Quiénes Somos */
+.texto-colapsable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+.texto-colapsable p:last-child { margin-bottom: 0; }
+.btn-ver-mas {
+    background: none;
+    border: none;
+    color: #b1c57c;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 4px 0;
+    margin-top: 6px;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: 'Inter', sans-serif;
+}
+.btn-ver-mas:hover { color: #94a862; }
+
 /* --- SIMULADOR ANTES/DESPUÉS CUADRADO PERFECTO --- */
 .transformacion-section { 
     padding: 60px 8% 40px; 
@@ -596,6 +617,22 @@ nav a:hover { color: #b1c57c; }
 }
 .btn-maps:hover { background-color: #b1c57c; color: #ffffff; }
 .btn-maps:active { transform: scale(0.97); }
+
+/* Mapa embebido de Google Maps */
+.mapa-embed-container {
+    margin-top: 18px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e5ddd4;
+    width: 100%;
+    height: 280px;
+}
+.mapa-embed-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
 
 /* --- KEYFRAMES COMPLEMENTARIOS --- */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

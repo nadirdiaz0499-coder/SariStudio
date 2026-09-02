@@ -158,6 +158,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
+    // 2.5 "VER MÁS" DEL TEXTO DE QUIÉNES SOMOS
+    // ==========================================
+    const btnVerMasSomos = document.getElementById('btn-ver-mas-somos');
+    const textoExtraSomos = document.getElementById('quienes-somos-extra');
+
+    btnVerMasSomos?.addEventListener('click', () => {
+        const abierto = textoExtraSomos.classList.toggle('abierto');
+        textoExtraSomos.style.maxHeight = abierto ? `${textoExtraSomos.scrollHeight}px` : null;
+        btnVerMasSomos.textContent = abierto ? 'Ver menos' : 'Ver más';
+        btnVerMasSomos.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    });
+
+    // ==========================================
     // 3. LÓGICA DEL ACCORDION DE PREGUNTAS (FAQ)
     // ==========================================
     const faqQuestions = document.querySelectorAll('.faq-question');
