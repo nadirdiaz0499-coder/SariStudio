@@ -224,16 +224,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (respuestasQuiz.efecto === 'natural' && respuestasQuiz.enfoque === 'pestanas') {
                         resultadoTexto.innerText = "Lash Lifting ✨";
-                        respuestasQuiz.matchVal = "Lash Lifting ($300)";
+                        respuestasQuiz.matchVal = "Lash Lifting ($450)";
                     } else if (respuestasQuiz.efecto === 'rimel') {
                         resultadoTexto.innerText = "Extensiones Efecto Máscara 🖤";
-                        respuestasQuiz.matchVal = "Efecto Máscara ($500)";
+                        respuestasQuiz.matchVal = "Efecto Máscara ($550)";
                     } else if (respuestasQuiz.efecto === 'volumen' && respuestasQuiz.enfoque === 'cejas') {
                         resultadoTexto.innerText = "Cejas 4K (Lamination + Henna) 👑";
-                        respuestasQuiz.matchVal = "Cejas 4K ($400)";
+                        respuestasQuiz.matchVal = "Cejas 4K ($500)";
                     } else if (respuestasQuiz.enfoque === 'todo') {
                         resultadoTexto.innerText = "Ritual Magic (Lashes + Brows) 🧚‍♀️";
-                        respuestasQuiz.matchVal = "Combo Magic ($500)";
+                        respuestasQuiz.matchVal = "Combo Magic ($700)";
                     } else {
                         resultadoTexto.innerText = "Teddy Lashes 🌸";
                         respuestasQuiz.matchVal = "Teddy Lashes ($500)";
@@ -260,13 +260,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const tipText = document.getElementById('smart-tip-text');
 
     const tipsCuidados = {
-        "Lash Lifting ($300)": "Para el Lash Lifting, acudir con tus pestañas totalmente limpias y sin rímel agiliza el proceso.",
-        "Extensiones Clásicas ($500)": "Evita aplicar productos oleosos o rímel en los ojos 24 horas antes para garantizar la máxima retención del set.",
-        "Volumen Hawaiano ($430)": "¡Una gran elección! Agenda tus retoques entre los 15 y 18 días para mantener tu mirada densa y perfecta.",
+        "Lash Lifting ($450)": "Para el Lash Lifting, acudir con tus pestañas totalmente limpias y sin rímel agiliza el proceso.",
+        "Extensiones Clásicas ($550)": "Evita aplicar productos oleosos o rímel en los ojos 24 horas antes para garantizar la máxima retención del set.",
+        "Volumen Hawaiano ($500)": "¡Una gran elección! Agenda tus retoques entre los 15 y 17 días para mantener tu mirada densa y perfecta.",
         "Teddy Lashes ($500)": "Al elegir Teddy Lashes color café, recuerda que los retoques sugeridos son entre los 15 y 18 días ($350) para mantener ese volumen sutil e impecable.",
-        "Efecto Máscara ($500)": "Este diseño aporta un fondo oscuro genial. Recuerda no mojar tus ojos durante las primeras 24 horas de la aplicación.",
-        "Cejas 4K ($400)": "Evita desmaquillantes bifásicos o exfoliantes sobre la ceja para prolongar el sombreado de la henna orgánica.",
-        "Combo Magic ($500)": "Al ser un servicio de aplicación simultánea doble, optimizamos tu tiempo al máximo. ¡Ven lista para relajarte!"
+        "Efecto Máscara ($550)": "Este diseño aporta un fondo oscuro genial. Recuerda no mojar tus ojos durante las primeras 24 horas de la aplicación.",
+        "Cejas 4K ($500)": "Evita desmaquillantes bifásicos o exfoliantes sobre la ceja para prolongar el sombreado de la henna orgánica.",
+        "Combo Magic ($700)": "Al ser un servicio de aplicación simultánea doble, optimizamos tu tiempo al máximo. ¡Ven lista para relajarte!"
     };
 
     selectServicio?.addEventListener('change', (e) => {
