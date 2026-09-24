@@ -1,3 +1,18 @@
+// ==========================================
+// 📅 FECHAS BLOQUEADAS (agenda llena / día no disponible)
+// ==========================================
+// Formato "YYYY-MM-DD". Para bloquear un día nuevo, solo agrega su fecha
+// a esta lista (respetando las comillas y la coma). Para reabrir un día,
+// borra su línea. No requiere tocar nada más del código.
+const FECHAS_BLOQUEADAS = [
+    "2026-09-24",
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-30",
+];
+
 document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 0. BANNER DE AVISO: precios vigentes solo hasta septiembre
@@ -378,6 +393,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 return false;
             }
 
+            if (FECHAS_BLOQUEADAS.includes(inputFecha.value)) {
+                mostrarErrorFecha(true, 'Esa fecha ya no tiene disponibilidad, agenda llena 💕 Elige otro día y con gusto te atendemos.');
+                inputFecha.value = '';
+                actualizarPlaceholderFecha();
+                repintarOpcionesHora(opcionesHoraOriginales);
+                return false;
+            }
+
             mostrarErrorFecha(false);
 
             // Sábado cierra a las 14:30, el resto de la semana (Lun-Vie) a las 18:30
@@ -418,6 +441,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 mensajeError = 'No se aceptan citas para el mismo día. Elige una fecha posterior con al menos un día de anticipación ✨';
             } else if (fechaChk.getDay() === 0) {
                 mensajeError = 'Los domingos el estudio permanece cerrado. Elige un día de lunes a sábado ✨';
+            } else if (FECHAS_BLOQUEADAS.includes(fechaCita)) {
+                mensajeError = 'Esa fecha ya no tiene disponibilidad, agenda llena 💕 Elige otro día y con gusto te atendemos.';
             }
 
             if (mensajeError) {
