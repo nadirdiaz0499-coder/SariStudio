@@ -13,6 +13,15 @@ const FECHAS_BLOQUEADAS = [
     "2026-09-30",
 ];
 
+// ==========================================
+// 🔗 PUENTE DE DISPONIBILIDAD (lee el Google Calendar de citas)
+// ==========================================
+// Pega aquí la URL de tu Worker de Cloudflare una vez publicado
+// (algo como "https://sari-disponibilidad.tu-usuario.workers.dev").
+// Si se deja vacío, el formulario sigue funcionando normal, solo
+// sin el bloqueo automático de horas ocupadas.
+const ENDPOINT_DISPONIBILIDAD = "https://sari-disponibilidad.nadirdiaz0499.workers.dev";
+
 document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 0. BANNER DE AVISO: precios vigentes solo hasta septiembre
@@ -363,7 +372,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const mañanaTexto = `${mañana.getFullYear()}-${String(mañana.getMonth() + 1).padStart(2, '0')}-${String(mañana.getDate()).padStart(2, '0')}`;
         inputFecha.min = mañanaTexto;
 
-        const validarYFiltrarFecha = () => {
+        // Consulta el puente de disponibilidad (Cloudflare Worker) para una fecha
+        // y devuelve los rangos ocupados, ej. [{inicio:"09:00", fin:"10:30"}].
+        // Si algo falla (sin internet, endpoint no configurado, etc.) devuelve
+        // una lista vacía y NO bloquea al cliente por un error nuestro.
+        const consultarHorasOcupadas = async (fechaISO) => {
+            if (!ENDPOINT_DISPONIBILIDAD) return [];
+            try {
+                const resp = await fetch(`${ENDPOINT_DISPONIBILIDAD}?fecha=${fechaISO}`);
+                if (!resp.ok) return [];
+                const datos = await resp.json();
+                return Array.isArray(datos.ocupado) ? datos.ocupado : [];
+            } catch (err) {
+                console.warn('No se pudo consultar disponibilidad en tiempo real:', err);
+                return [];
+            }
+        };
+
+        const validarYFiltrarFecha = async () => {
             if (!inputFecha.value) { mostrarErrorFecha(false); return true; }
 
             // Parseamos "YYYY-MM-DD" manualmente para evitar corrimientos de zona horaria
@@ -407,6 +433,22 @@ document.addEventListener("DOMContentLoaded", () => {
             const horaLimite = diaSemana === 6 ? '14:30' : '18:30';
             const opcionesFiltradas = opcionesHoraOriginales.filter(opt => opt.value === '' || opt.value <= horaLimite);
             repintarOpcionesHora(opcionesFiltradas);
+
+            // Mientras se consulta el calendario real, dejamos las opciones por
+            // horario general de arriba; en cuanto responde el puente, quitamos
+            // las horas que ya estén ocupadas ese día. Guardamos la fecha que
+            // disparó esta consulta para no pisar una selección más nueva si
+            // la clienta ya cambió de fecha antes de que responda el puente.
+            const fechaDeEstaConsulta = inputFecha.value;
+            const ocupado = await consultarHorasOcupadas(fechaDeEstaConsulta);
+            if (ocupado.length && inputFecha.value === fechaDeEstaConsulta) {
+                const opcionesLibres = opcionesFiltradas.filter(opt => {
+                    if (opt.value === '') return true;
+                    return !ocupado.some(bloque => opt.value >= bloque.inicio && opt.value < bloque.fin);
+                });
+                repintarOpcionesHora(opcionesLibres);
+            }
+
             return true;
         };
 
