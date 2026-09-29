@@ -96,19 +96,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const tituloNodo = document.getElementById('animar-titulo');
     if (tituloNodo) {
         const textoOriginal = tituloNodo.innerText.trim();
-        tituloNodo.innerHTML = ''; 
+        tituloNodo.innerHTML = '';
 
         for (let i = 0; i < textoOriginal.length; i++) {
             const char = textoOriginal[i];
             const span = document.createElement('span');
-            
+
             if (char === ' ') {
                 span.classList.add('espacio-letra');
                 span.innerHTML = '&nbsp;';
             } else {
                 span.innerText = char;
             }
-            
+
             span.style.animationDelay = `${i * 0.05}s`;
             tituloNodo.appendChild(span);
         }
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sliderContainer.addEventListener('touchstart', actualizarRect, { passive: true });
         sliderContainer.addEventListener('touchmove', (e) => {
             if (e.touches && e.touches[0]) {
-                e.preventDefault(); 
+                e.preventDefault();
                 moverSlider(e.touches[0].clientX);
             }
         }, { passive: false });
@@ -231,13 +231,13 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener('click', () => {
                 const pasoActual = parseInt(paso.getAttribute('data-step'));
                 const valorSeleccionado = btn.getAttribute('data-value');
-                
+
                 if (pasoActual === 1) respuestasQuiz.efecto = valorSeleccionado;
                 if (pasoActual === 2) respuestasQuiz.enfoque = valorSeleccionado;
                 if (pasoActual === 3) respuestasQuiz.prioridad = valorSeleccionado;
 
                 paso.classList.remove('active');
-                
+
                 const siguientePaso = document.querySelector(`[data-step="${pasoActual + 1}"]`);
                 if (siguientePaso) {
                     siguientePaso.classList.add('active');
@@ -462,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     document.getElementById('formulario-cita')?.addEventListener('submit', function(e) {
         e.preventDefault();
-        const numeroWhatsAppSariStudio = "527224173650"; 
+        const numeroWhatsAppSariStudio = "527224173650";
 
         const nombreCliente = document.getElementById('nombre').value.trim();
         const whatsappCliente = document.getElementById('whatsapp').value.trim();
@@ -499,7 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const fechaLimpia = fechaCita.split('-').reverse().join('/');
 
-        const textoMensaje = 
+        const textoMensaje =
             `✨ *NUEVA SOLICITUD DE CITA* ✨%0A%0A` +
             `👤 *Cliente:* ${nombreCliente}%0A` +
             `📱 *WhatsApp:* ${whatsappCliente}%0A` +
