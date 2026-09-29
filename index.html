@@ -12,10 +12,7 @@
     <link rel="icon" type="image/png" href="logo_ss.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fuente Inter: se carga SIN bloquear el primer pintado (antes era render-blocking).
-         Mientras llega se usa la fuente del sistema y luego se intercambia (display=swap). -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- Precarga la imagen principal del Hero: es la primera que se pinta (LCP) -->
     <link rel="preload" as="image" href="hero.webp" fetchpriority="high">
@@ -91,7 +88,7 @@
     </div>
 
     <header>
-        <div class="logo"><img src="logo_ss.png" alt="Sari Studio Logo" class="logo-img" width="223" height="223"></div>
+        <div class="logo"><img src="logo_ss.png" alt="Sari Studio Logo" class="logo-img"></div>
         <nav>
             <a href="#quienes-somos">Quiénes Somos</a>
             <a href="#transformacion">Transformación</a>
@@ -103,10 +100,7 @@
     </header>
 
     <section class="hero">
-        <!-- La imagen del hero ahora es un <img> real (antes era background-image en CSS):
-             así el navegador la detecta como LCP y respeta fetchpriority="high".
-             El aspecto es idéntico gracias a object-fit/object-position en style.css -->
-        <div class="hero-bg-unified"><img src="hero.webp" alt="" fetchpriority="high" decoding="async"></div>
+        <div class="hero-bg-unified"></div>
         <div class="hero-content">
             <h1 id="animar-titulo">Miradas Mágicas</h1>
             <p class="subtitulo">Diseños personalizados de pestañas y cejas que realzan tus facciones, cuidando siempre la salud de tus pestañas y cejas naturales.</p>
