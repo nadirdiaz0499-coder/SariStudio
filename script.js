@@ -95,7 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // =================================================================
     const tituloNodo = document.getElementById('animar-titulo');
     if (tituloNodo) {
-        const textoOriginal = tituloNodo.innerText.trim();
+        // textContent en vez de innerText: innerText obliga al navegador a calcular
+        // el layout completo (forced reflow) solo para leer un texto que no cambia
+        const textoOriginal = tituloNodo.textContent.trim();
         tituloNodo.innerHTML = ''; 
 
         for (let i = 0; i < textoOriginal.length; i++) {
@@ -106,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 span.classList.add('espacio-letra');
                 span.innerHTML = '&nbsp;';
             } else {
-                span.innerText = char;
+                span.textContent = char;
             }
             
             span.style.animationDelay = `${i * 0.05}s`;
@@ -120,6 +122,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const sliderContainer = document.getElementById('parallax-slider');
     const beforeLayer = document.getElementById('before-layer');
     const sliderHandle = document.getElementById('slider-handle');
+
+    // Carga diferida de las fotos antes/después: se agrega la clase .cargado (que en
+    // style.css trae los background-image) cuando el slider está a ~400px de entrar
+    // en pantalla. Si el navegador no soporta IntersectionObserver, se cargan de una vez.
+    if (sliderContainer) {
+        const cargarSlider = () => sliderContainer.classList.add('cargado');
+        if ('IntersectionObserver' in window) {
+            const observadorSlider = new IntersectionObserver((entradas, obs) => {
+                if (entradas.some(e => e.isIntersecting)) {
+                    cargarSlider();
+                    obs.disconnect();
+                }
+            }, { rootMargin: '400px 0px' });
+            observadorSlider.observe(sliderContainer);
+        } else {
+            cargarSlider();
+        }
+    }
 
     if (sliderContainer && beforeLayer && sliderHandle) {
         // Cacheamos el rect del contenedor y solo lo recalculamos cuando
